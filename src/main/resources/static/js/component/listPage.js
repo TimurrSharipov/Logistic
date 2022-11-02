@@ -37,11 +37,19 @@ define(function() {
                             if (column.dialogUrl) {
                                 require([column.dialogUrl], function(dialogPage) {
                                     webix.ui({
+                                        id: 'win3',
                                         view: 'window',
-                                        head: 'Choose an item',
                                         width: 400,
                                         position: 'center',
                                         modal: true,
+                                        close: true,
+                                        head:{
+                                            view:"toolbar", cols:[
+                                                { width:4 },
+                                                { view:"label", label: "Choose" },
+                                                { view:"button", label: 'Close Me', width: 100, align: 'right', click:function(){ $$('win3').close(); }}
+                                            ]
+                                        },
                                         body: dialogPage,
                                         parentTable: parentTable,
                                         cell: id,
